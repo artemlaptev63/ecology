@@ -1,0 +1,71 @@
+.datepicker {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  cursor: pointer;
+  
+  &__picker-wrapper {
+    display: flex;
+  }
+
+  &__control {
+    width: 100%;
+    color: '#161616';
+    border-radius: 4px;
+    font-size: 1rem;
+    padding: 1rem;
+    border: 1px solid #A7A9AC;
+    border-right: none;
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+    outline: none;
+    font-weight: 100;
+
+    &--invalid {
+      border-color: red
+    }
+  }
+
+  &__picker {
+    width: 100%;
+  }
+
+  &__label {
+    padding-bottom: 0.5rem;
+    font-weight: 100;
+  }
+
+  &__icon-container {
+    border: 1px solid #A7A9AC;
+    display: flex;
+    padding: 0 1rem;
+    align-items: center;
+    justify-content: center;
+    border-bottom-right-radius: 4px;
+    border-top-right-radius: 4px;
+
+    &--invalid {
+      border-color: red;
+    }
+  }
+
+  &__icon {
+    width: 1.6rem;
+    height: 1.6rem;
+  }
+}
+
+.react-datepicker__close-icon::after {
+  background-color: green;
+  height: 1.5rem;
+  width: 1.5rem;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.react-datepicker-wrapper {
+  width: 100%;
+}
+

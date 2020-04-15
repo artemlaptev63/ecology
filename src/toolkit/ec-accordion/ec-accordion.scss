@@ -1,0 +1,48 @@
+.accordion {
+
+  &__title-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    border: 1px solid #E6E7E8;
+    border-top: 3px solid green;
+    padding: 1rem 1.8rem;
+    cursor: pointer;
+
+    &--yellow {
+      border-top-color: yellow;
+    }
+
+    &--red {
+      border-top-color: red;
+    }
+
+    &:hover {
+      background-color: #f8f8f8;
+    }
+  }
+
+  &__title {
+    font-family: "Open Sans", sans-serif;
+    text-align: left;
+    font-weight: bold;
+    font-size: 1.2rem;
+    line-height: 1.5rem;
+  }
+
+  &__shevron {
+    transform: rotate(180deg);
+    transition: all 0.5s;
+
+    &--active {
+      transform: rotate(360deg);
+    }
+  }
+
+  &__content {
+    background-color: white;
+    overflow: auto;
+    transition: max-height 0.3s ease;
+  }
+}

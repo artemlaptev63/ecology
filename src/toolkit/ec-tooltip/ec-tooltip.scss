@@ -1,0 +1,26 @@
+.control {
+  font-size: 1.5rem;
+  font-weight: 100;
+  background-color: transparent;
+  color: blue;
+  border: 1px solid blue;
+  border-radius: 50%;
+  width: 2rem;
+  height: 2rem;
+  display: inline-block;
+  text-align: center;
+  cursor: pointer;
+  padding-top: 0.1rem;
+}
+
+// to change default color
+
+
+.tippy-tooltip {
+  color: green !important;
+}
+
+//if you have arrow
+// .tippy-popper[x-placement^=top] [x-arrow] {
+//   border-top: 7px solid green; 
+// }

@@ -1,0 +1,27 @@
+.address-search {
+  position: relative;
+
+  &__list {
+    list-style: none;
+    width: 100%;
+    position: absolute;
+    z-index: 100000;
+  }
+
+  &__item {
+    display: flex;
+    padding: 0.8rem 2rem;
+    border: 1px solid #999;
+    border-top: none;
+    font-size: 1rem;
+    color: gray;
+    cursor: pointer;
+    background-color: white;
+
+    &--center {
+      justify-content: center;
+    }
+  }
+}
+
+

@@ -1,0 +1,11 @@
+@mixin access-light {
+  .access {
+    @content;
+  }
+}
+
+@mixin access-dark {
+  .access.dark {
+    @content;
+  }
+}

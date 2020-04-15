@@ -1,0 +1,22 @@
+@import '../mixins.scss';
+
+.test {
+  background-color: red;
+  color: green;
+  font-size: 1rem;
+}
+
+@include access-light {
+  .test {
+    background-color: white;
+    color: black;
+  }
+}
+
+@include access-dark {
+  .test {
+    background-color: black;
+    color: white;
+  }
+}
+
