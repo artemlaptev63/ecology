@@ -1,58 +1,86 @@
-import React, {useState, useEffect, useContext} from 'react';
+import React, {useContext, useState, useEffect} from 'react';
 import './App.scss';
 import "react-datepicker/dist/react-datepicker.css";
 import 'react-datepicker/dist/react-datepicker-cssmodules.css';
-import {EcDatePicker} from './toolkit/ec-datepicker/ec-datepicker';
-import {EcSelect, PickerOption} from './toolkit/ec-select/ec-select';
-import {EcMultiSelect} from './toolkit/ec-multi-select/ec-multi-select';
-import {EcInput} from './toolkit/ec-input/ec-input';
-import {EcForm} from './toolkit/ec-form/ec-form';
-import {EcButton} from './toolkit/ec-button/ec-button';
-import {useTestFormFields, useTestFormValidation} from './fields';
-import {observer} from 'mobx-react';
-import {EcMaskedInput} from './toolkit/ec-masked-input/ec-masked-input';
-import {EcCheckbox} from './toolkit/ec-checkbox/ec-checkbox';
-import {EcRadio} from './toolkit/ec-radio/ec-radio';
-import {EcRadioGroup} from './components/ec-radio-group/ec-radio-group';
-import {EcAccordion} from './toolkit/ec-accordion/ec-accordion';
-import {StoresContext} from './stores';
-import {EcModal} from './toolkit/ec-modal/ec-modal';
-import {EcTooltip} from './toolkit/ec-tooltip/ec-tooltip';
-import {EcToast} from './toolkit/ec-toast/ec-toast';
-import {Router, Switch, Route} from 'react-router-dom';
-import {PrivateRoute} from './protected-route';
+import {Router, Switch, Route, withRouter} from 'react-router-dom';
 import {LoginScreen} from './screens/login-screen';
-import {MainScreen} from './screens/main-screen';
 import {ProtectedScreen} from './screens/protected-screen';
 import {history} from './history';
-import {Header} from './components/header';
+import Header from './components/header';
 import {Demo} from './screens/demo';
-const data = [
-  {
-    value: '1',
-    label: 'First line'
-  },
-  {
-    value: '2',
-    label: 'Second line'
-  },
-  {
-    value: '3',
-    label: 'Third line'
-  },
-  {
-    value: '4',
-    label: 'Fourth line'
-  },
-];
+import {Loading} from './screens/loading';
+import {NoSidebarNoHeader} from './screens/no-sidebar-noheader';
+import {WithoutSidebar} from './screens/with-org-and-header';
+import {StoresContext} from './stores';
+import {observer} from 'mobx-react';
+import {EcInput} from './toolkit/ec-input/ec-input';
+import {defer, of, from, interval, Subject} from 'rxjs';
+import {switchMap, map} from 'rxjs/operators';
+import wretch from 'wretch';
+import {throttle} from 'throttle-debounce';
+import {EcCheckbox} from './toolkit/ec-checkbox/ec-checkbox';
+import {EcDateRange} from './toolkit/ec-date-range/ec-date-range';
+import {useTestFormValidation, useTestFormFields} from './fields';
+import {EcButton} from './toolkit/ec-button/ec-button';
+import {EcTextarea} from './toolkit/ec-textarea/ec-textarea';
+import {ProgressCard} from './components/progress-card/progress-card';
+import {ProgressCardGroup} from './components/progress-card-group/progress-card-group';
 
-export const App = () => {
-//   const {values, setters} = useTestFormFields();
-//   const {validation, invalid} = useTestFormValidation();
+// Client ID: Iv1.34626e3143be67a9
+
+// Client secret: f02e7fd4a97de71098327015ef2abf1b498f0bb2
+export const App = observer(() => {
+  const clientId = 'Iv1.34626e3143be67a9';
+  const clientSecret = 'f02e7fd4a97de71098327015ef2abf1b498f0bb2'
+  const {values, setters} = useTestFormFields();
+  const {validation, invalid} = useTestFormValidation();
 //   const {notificationController} = useContext(StoresContext);
 // const [fetched, setFetched] = useState(false);
-//   const [selectedId, setSelectedId] = useState('');
+  const [selectedId, setSelectedId] = useState('');
 //   const [confirmed, setConfirmed] = useState(false);
+
+// const {testStore} = useContext(StoresContext);
+
+    // useEffect(() => {
+    //   if(value) {
+    //     getPredictions()
+    //   }
+      
+    // }, [value])
+
+const getData = (): Promise<any> => {
+  
+    return wretch(`https://api.github.com/search/users`)
+    .signal(controllersService.getController(`https://api.github.com/search/users`))
+    .query({
+      q: 'ar',
+      client_id: clientId,
+      client_secret: clientSecret,
+    })
+    .get()
+    .json()
+    
+}
+
+const getPredictions = throttle(1000, (): void => {
+  controllersService.abortRequests('https://api.github.com/search/users');
+
+  if ('value'.length < 3) {
+    return;
+  }
+
+  getData()
+    .then(res => {
+      console.log(res)
+    })
+    .catch(() => console.log('error'));
+});
+// const getData = () => {
+//   return from()
+//   const response = await fetch(`https://api.github.com/search/users?q=${value}&client_id=${clientId}&client_secret=${clientSecret}`);
+//     const result = await response.json();
+//     return result
+// }
   
 
   // const addHint = (message: string) => {
@@ -61,30 +89,68 @@ export const App = () => {
   // }
   // const [activeIndex, setActiveIndex] = useState('');
   // попап тултип notification интерсептор abort controller rxjs?
+
+  const submit = () => {
+    console.log(values.startDate, values.endDate)
+  }
+
+
+
   return (
-    <div className="App">
-      <Router history={history}>
+    <div className="main-greed">
+      
+      {/* <Router history={history}>
+          <Header/>
           <Switch>
-            
-            <Route path="/" exact component={LoginScreen} />
-           
-              <Route path='/app' component={ProtectedScreen}/>
-              <Route path='/demo' component={Demo} />
-            
-            {/* <Route exact path="/" component={LoginScreen}/>
-            <Route path='/app' component={MainScreen}></Route>
-            <PrivateRoute path='/protected' component={ProtectedScreen}/> */}
+            <Route exact path="/" component={Loading} />
+            <Route path='/login' component={LoginScreen} />
+            <Route path='/app' component={ProtectedScreen}/>
+            <Route path='/demo' component={Demo}/>
+            <Route path='/without-sidebar' component={WithoutSidebar}/>
+            <Route path="/without-sidebar-and-header" component={NoSidebarNoHeader} />
           </Switch>
-      </Router>
-      {/* <EcButton onClick={() => addHint('1  message messagemes sage message')}>Show popup</EcButton>
-      <EcButton onClick={() => addHint('2 message')}>Show popup</EcButton>
-      <EcButton onClick={() => addHint('3 message')}>Show popup</EcButton>
-      <EcButton onClick={() => addHint('4 message')}>Show popup</EcButton>
-      <EcButton onClick={() => addHint('5 message')}>Show popup</EcButton>
-      <EcToast /> */}
+      </Router> */}
     </div>
   );
-};
+});
+
+class ControllersService {
+	private controllersMap: Map<string, AbortController[]> = new Map();
+
+	public getController = (url: string) => {
+		const controller = new AbortController();
+		this.addController(url, controller);
+
+		return controller;
+	};
+
+	public abortRequests = (url: string) => {
+		const controllers = this.controllersMap.get(url);
+
+		if(controllers) {
+			controllers.forEach(controller => {
+				controller.abort();
+			});
+			this.clearControllers(url);
+		}
+	};
+
+	private addController = (url: string, controller: AbortController) => {
+		const controllers = this.controllersMap.get(url);
+
+		if(controllers) {
+			controllers.push(controller);
+		} else {
+			this.controllersMap.set(url, [controller]);
+    }
+	};
+
+	private clearControllers = (url: string) => {
+		this.controllersMap.set(url, []);
+	}
+}
+
+export const controllersService = new ControllersService();
 
   
 

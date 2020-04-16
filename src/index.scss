@@ -6,6 +6,26 @@ html.access {
   font-size: 20px;
 }
 
+@mixin font($font-family, $font-file, $font-weight) {
+  @font-face {
+    font-family: $font-family;
+    src: url($font-file) format('truetype');
+    font-weight: $font-weight;
+    font-style: normal;
+    font-display: fallback;
+  }
+}
+
+@include font('Montserrat', 'fonts/Montserrat-Thin.ttf', 100);
+@include font('Montserrat', 'fonts/Montserrat-ExtraLight.ttf', 200);
+@include font('Montserrat', 'fonts/Montserrat-Light.ttf', 300);
+@include font('Montserrat', 'fonts/Montserrat-Regular.ttf', 400);
+@include font('Montserrat', 'fonts/Montserrat-Medium.ttf', 500);
+@include font('Montserrat', 'fonts/Montserrat-SemiBold.ttf', 600);
+@include font('Montserrat', 'fonts/Montserrat-Bold.ttf', 700);
+@include font('Montserrat', 'fonts/Montserrat-ExtraBold.ttf', 800);
+@include font('Montserrat-Bold', 'fonts/Montserrat-Black.ttf', 900);
+
 
 *,
 *::after,
@@ -13,7 +33,7 @@ html.access {
   margin: 0;
   padding: 0;
   box-sizing: inherit;
-  font-family: sans-serif;
+  font-family: 'Montserrat', sans-serif;
 }
 
 body {
@@ -53,6 +73,7 @@ body {
   background-color: yellowgreen;
   // width: 80%;
   flex: 4.5;
+  padding: 2rem;
 }
 
 .footer {

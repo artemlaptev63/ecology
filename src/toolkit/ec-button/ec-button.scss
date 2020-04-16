@@ -10,6 +10,7 @@
   color: white;
   outline: none;
   letter-spacing: 1px;
+  display: inline-block;
 
   &:disabled {
     background-color: #E6E7E8;
@@ -30,6 +31,8 @@
     }
   }
 
+  
+
   &:hover {
     opacity: 0.9;
     transform: translateY(-0.1rem);
@@ -40,6 +43,27 @@
       cursor: initial;
       transform: none;
       box-shadow: none;
+    }
+  }
+
+  &--text {
+    background-color: transparent;
+    color: #5AB379;
+    border: none;
+  }
+
+  &--text {
+    &:disabled {
+      background-color: transparent;
+      color: #A7A9AC;
+    }
+  }
+
+  &--text {
+    &:hover {
+      transform: none;
+      box-shadow: none;
+      opacity: 0.5;
     }
   }
 

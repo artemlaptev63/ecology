@@ -1,0 +1,65 @@
+.progress-card {
+  border: 1px solid #E6E7E8;
+  border-radius: .25rem;
+  border-bottom: .25rem solid #E6E7E8;
+  width: 17rem;
+  min-width: 17rem;
+  height: 4.4rem;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+
+  &--in-progress {
+    border-bottom-color: #95D6CB;
+  }
+
+  &--done {
+    border-bottom-color: #6CB6A2;
+  }
+
+  &__title {
+    font-weight: normal;
+
+    &--not-started {
+      color: #E6E7E8;
+    }
+  
+    &--done {
+      font-weight: bold;
+    }
+  }
+  
+  &__status-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+
+  &__interest {
+    color: #E6E7E8;
+
+    &--in-progress {
+      color: #E13D26;
+    }
+  
+    &--done {
+      color: #6CB6A2;
+      font-weight: bold;
+    }
+  }
+
+  &__status {
+    color: #E6E7E8;
+    font-size: 0.8rem;
+
+    &--in-progress {
+      color: #E13D26;
+    }
+  
+    &--done {
+      color: #6CB6A2;
+    }
+  }
+}

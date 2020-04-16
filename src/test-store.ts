@@ -1,15 +1,32 @@
 import {observable, action} from 'mobx';
 
 export class TestStore {
-  @observable date: Date | null = null;
+  @observable startDate: Date | null = null;
+  @observable endDate: Date | null = null;
   @observable selectId: string = '';
   @observable arrayIds: string[] = [];
   @observable inputValue: string = '';
   @observable maskedValue: string = '';
+  @observable isHeaderVisible: boolean = true;
 
   @action
-  setDate = (date: Date | null) => {
-    this.date = date;
+  setStartDate = (date: Date | null) => {
+    this.startDate = date;
+  }
+
+  @action
+  setEndDate = (date: Date | null) => {
+    this.endDate = date;
+  }
+
+  @action
+  hideHeader = () => {
+    this.isHeaderVisible = false;
+  }
+
+  @action
+  showHeader = () => {
+    this.isHeaderVisible = true;
   }
 
   @action
@@ -33,7 +50,6 @@ export class TestStore {
   }
 
   clearStore = () => {
-    this.setDate(null);
     this.setSelectId('')
     this.setArrayIds([])
     this.setInputValue('');

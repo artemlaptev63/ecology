@@ -1,3 +1,9 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
 .datepicker {
   display: flex;
   flex-direction: column;
@@ -53,6 +59,15 @@
     width: 1.6rem;
     height: 1.6rem;
   }
+
+  &__error-container {
+    min-height: 1.7rem;
+    padding-top: 0.5rem;
+  }
+
+  &__error {
+    color: red;
+  }
 }
 
 .react-datepicker__close-icon::after {
@@ -63,6 +78,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  padding-right: 0.15rem;
+  padding-bottom: 0.2rem;
+
 }
 
 .react-datepicker-wrapper {

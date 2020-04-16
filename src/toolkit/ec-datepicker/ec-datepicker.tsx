@@ -4,7 +4,7 @@ import DatePicker, {registerLocale} from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 import ru from 'date-fns/locale/ru';
 import './ec-datepicker.scss';
-import ReactDatePicker from 'react-datepicker';
+import ReactDatePicker, {ReactDatePickerProps} from 'react-datepicker';
 import {FormFieldValidation} from '../../fields';
 import MaskedInput from 'react-input-mask';
 
@@ -17,10 +17,12 @@ type EcDatePickerProps = {
   placeholder: string;
   validation?: FormFieldValidation;
   fetched?: boolean;
+  minDate?: Date | null;
+  maxDate?: Date | null;
 }
 
 export const EcDatePicker = (props: EcDatePickerProps) => {
-  const {date, setDate, label, placeholder, validation, fetched} = props;
+  const {date, setDate, label, placeholder, validation, fetched, minDate, maxDate} = props;
   const [dirty, setDirsty] = useState(false);
   const [touched, setTouched] = useState(false);
   const datepickerRef = useRef<ReactDatePicker | null>(null);
@@ -56,12 +58,14 @@ export const EcDatePicker = (props: EcDatePickerProps) => {
   }
 
   return (
-    <>
+    <div className="container">
       <label className='datepicker' onClick={handleClick}>
         <div className='datepicker__label'>{label}</div>
         <div className="datepicker__picker-wrapper">
           <div className='datepicker__picker'>
             <DatePicker
+              maxDate={maxDate}
+              minDate={minDate}
               showYearDropdown
               showMonthDropdown
               isClearable
@@ -80,7 +84,9 @@ export const EcDatePicker = (props: EcDatePickerProps) => {
           </div>
         </div>
       </label>
-      {validation?.invalid && dirty && touched && <div className='datepicker__error'>{validation.errorMessage}</div>}
-    </>
+      <div className="datepicker__error-container">
+        {validation?.invalid && dirty && touched && <div className='datepicker__error'>{validation.errorMessage}</div>}
+      </div>
+    </div>
   );
 };

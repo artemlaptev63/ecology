@@ -1,0 +1,23 @@
+.progress-card-group {
+  display: flex;
+  width: 100%;
+  overflow: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  position: absolute;
+  left: 0;
+  right: 0;
+
+  &__divider {
+    min-width: 2rem;
+    max-width: 2rem;
+  }
+
+  &__card {
+    margin-left: 2rem;
+  }
+}
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}

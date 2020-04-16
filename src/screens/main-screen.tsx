@@ -3,7 +3,7 @@ import {NavLink, RouteComponentProps, Route, Switch} from 'react-router-dom';
 import {FirstNestedComponent} from './first-nested-component';
 import {SecondNestedComponent} from './second-nested-component';
 import {ThirdNestedComponent} from './third-nested-component';
-import {Header} from '../components/header';
+import Header from '../components/header';
 
 export const MainScreen = ({match, location}: RouteComponentProps) => {
 
@@ -23,7 +23,7 @@ export const MainScreen = ({match, location}: RouteComponentProps) => {
   return (
     <div className="main-greed">
       <div className="header">
-        <Header />
+        {/* <Header /> */}
       </div>
         <div className="content">
           <aside className="sidebar">

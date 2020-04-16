@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
-import './ec-input.scss';
+import './ec-textarea.scss';
 import {FormFieldValidation} from '../../fields';
 
-export type EcInputProps = React.HTMLProps<HTMLInputElement> & {
+export type EcTextareaProps = React.HTMLProps<HTMLTextAreaElement> & {
   value: string;
   disabled?: boolean;
   label?: string;
@@ -16,7 +16,7 @@ export type EcInputProps = React.HTMLProps<HTMLInputElement> & {
   imageName?: string;
 };
 
-export const EcInput = React.forwardRef((props: EcInputProps, inputRef?: React.Ref<HTMLInputElement>) => {
+export const EcTextarea = (props: EcTextareaProps) => {
   const [dirty, setDirsty] = useState(false);
   const [touched, setTouched] = useState(false);
   const {value, fetched, disabled, className = '', label = '', placeholder, valueChange, validation, name, ...rest} = props;
@@ -46,17 +46,17 @@ export const EcInput = React.forwardRef((props: EcInputProps, inputRef?: React.R
 
 
   return (
-    <div className={`input ${className}`}>
-      {label && <label className="input__label">{label}</label>}
-      <input {...rest} value={value}
+    <div className={`textarea ${className}`}>
+      {label && <label className="textarea__label">{label}</label>}
+      <textarea {...rest} value={value}
             disabled={disabled}
             name={name}
             onBlur={() => setTouched(true)}
-            className={`input__control ${validation?.invalid && dirty && touched ? 'input__control--invalid' : ''}`}
+            className={`textarea__control ${validation?.invalid && dirty && touched ? 'textarea__control--invalid' : ''}`}
             placeholder={placeholder}
-            onChange={(e) => handleChange(e.target.value)} ref={inputRef}/>
+            onChange={(e) => handleChange(e.target.value)}/>
       {props.imageName && <img src={require(`../../${props.imageName}`)} alt={props.imageName}/>}
-      {validation?.invalid && dirty && touched && <div className='input__error'>{validation.errorMessage}</div>}
+      {validation?.invalid && dirty && touched && <div className='textarea__error'>{validation.errorMessage}</div>}
     </div>
   );
-});
+};
