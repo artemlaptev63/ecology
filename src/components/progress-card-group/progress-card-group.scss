@@ -1,12 +1,21 @@
 .progress-card-group {
-  display: flex;
-  width: 100%;
-  overflow: auto;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-  position: absolute;
-  left: 0;
-  right: 0;
+  background-color: white; 
+  position: relative; 
+  height: 4.45rem;
+  margin-left: -2rem; 
+  margin-right: -2rem;
+
+  &__container {
+    display: flex;
+    width: 100%;
+    overflow: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+  }
+  
 
   &__divider {
     min-width: 2rem;

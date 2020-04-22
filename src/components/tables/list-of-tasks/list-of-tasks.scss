@@ -1,0 +1,49 @@
+.tasks {
+  width: 100%;
+
+  &__label {
+    margin-bottom: .5rem;
+  }
+
+  &__table {
+    border: 1px solid #A7A9AC;
+    border-collapse: collapse;
+    width: 100%; 
+  }
+
+  &__head {
+    border-bottom: 1px solid #A7A9AC;
+  }
+
+  
+  &__row {
+    border-bottom: 1px solid #A7A9AC;
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  &__item {
+    text-align: left;
+    padding: 1rem;
+
+    &--center {
+      text-align: center;
+    }
+
+    &--sortable {
+      cursor: pointer;
+    }
+  }
+
+  &__item-img {
+    display: inline-block;
+    width: 1rem;
+    transition: all .2s;
+
+    &--ascending {
+      transform: rotate(180deg);
+    }
+  }
+}

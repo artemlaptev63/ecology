@@ -1,0 +1,28 @@
+.file-reader {
+  display: flex;
+  
+  &__label {
+    height: 9rem;
+    width: 6rem;
+    background-color: white;
+    color: #5AB379;
+    border: 1px solid #A7A9AC;
+    border-radius: 4px;
+    font-weight: 100;
+    font-size: 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+    &:hover {
+      border-color: #5AB379;
+    }
+  }
+
+  &__control {
+    display: none;
+  }
+
+  
+}

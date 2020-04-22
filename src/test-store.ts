@@ -8,6 +8,13 @@ export class TestStore {
   @observable inputValue: string = '';
   @observable maskedValue: string = '';
   @observable isHeaderVisible: boolean = true;
+  @observable files: string[] = [];
+  @observable selectedTasks: string[] = [];
+
+  @action
+  setSelectedTasks = (tasks: string[]) => {
+    this.selectedTasks = tasks;
+  }
 
   @action
   setStartDate = (date: Date | null) => {
@@ -47,6 +54,17 @@ export class TestStore {
   @action
   setMaskedValue = (maskedValue: string) => {
     this.maskedValue = maskedValue;
+  }
+
+  @action
+  setFiles = (files: string[]) => {
+    this.files = [...this.files, ...files];
+  }
+
+  @action
+  deleteFile = (index: number) => {
+    const updatedFiles = this.files.filter((item, i) => i !== index);
+    this.files = updatedFiles;
   }
 
   clearStore = () => {

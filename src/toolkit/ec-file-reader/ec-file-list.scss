@@ -1,0 +1,32 @@
+.item-container {
+  position: relative;
+  height: 9rem; 
+  width: 6rem;
+  margin-right: 1.2rem;
+
+  &__file {
+    height: 9rem; 
+    width: 6rem;
+    background-color: lightgrey;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #A7A9AC;
+  }
+  
+  &__image {
+    height: 9rem; 
+    width: 6rem;
+    border: 1px solid #A7A9AC;
+  }
+
+  &__trash {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    width: 1.3rem;
+    height: 1.5rem;
+    cursor: pointer;
+  }
+}
+

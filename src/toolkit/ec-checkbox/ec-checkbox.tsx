@@ -3,7 +3,6 @@ import './ec-checkbox.scss';
 
 type EcCheckboxProps = {
   title?: string;
-  name: string;
   value: boolean;
   className?: string;
   disabled?: boolean;
@@ -12,7 +11,7 @@ type EcCheckboxProps = {
 };
 
 export const EcCheckbox = (props: EcCheckboxProps) => {
-  const {disabled, title = '', value, onChange, name, circle} = props;
+  const {disabled, title = '', value, onChange, circle} = props;
 
   return (
     <label className="checkbox">
@@ -20,7 +19,6 @@ export const EcCheckbox = (props: EcCheckboxProps) => {
       <input className='checkbox__input'
               type="checkbox" disabled={disabled}
               checked={value}
-              name={name} 
               onChange={() => onChange(!value)} />
       <span className={`checkbox__checkmark ${circle && 'checkbox__checkmark--circle'}`}></span>
     </label>

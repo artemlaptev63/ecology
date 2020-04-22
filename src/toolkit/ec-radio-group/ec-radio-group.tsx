@@ -1,5 +1,5 @@
 import React from 'react';
-import {EcRadio} from '../../toolkit/ec-radio/ec-radio';
+import {EcRadio} from '../ec-radio/ec-radio';
 
 type EcRadioGroupProps = {
   values: {value: string, label: string}[];

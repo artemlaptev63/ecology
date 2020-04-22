@@ -9,14 +9,16 @@ type ProgressCardGroupProps = {
 export const ProgressCardGroup = (props: ProgressCardGroupProps) => {
   return (
     <div className="progress-card-group">
-      {
-        props.data.map((item, index) => {
-          return <div className='progress-card-group__card'>
-                   <ProgressCard key={index} title={item.title} interest={item.interest} 
-                                 style={{marginRight: index === props.data.length - 1 ? '2rem' : '0'}}/>
-                 </div>
-        })
-      }
+      <div className="progress-card-group__container">
+        {
+          props.data.map((item, index) => {
+            return <div className='progress-card-group__card'>
+                    <ProgressCard key={index} title={item.title} interest={item.interest} 
+                                  style={{marginRight: index === props.data.length - 1 ? '2rem' : '0'}}/>
+                  </div>
+          })
+        }
+      </div>
     </div>
   )
 }

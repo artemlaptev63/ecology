@@ -1,7 +1,7 @@
 .checkbox {
   display: block;
   position: relative;
-  padding-left: 35px;
+  padding-left: 1rem;
   margin-bottom: 12px;
   cursor: pointer;
   font-size: 22px;
@@ -32,7 +32,7 @@
     height: 1rem;
     width: 1rem;
     border-radius: 50%;
-    border-color: green;
+    border-color: #6CB6A2;
   }
 }
 
@@ -41,7 +41,7 @@
 }
 
 .checkbox .checkbox__input:checked ~ .checkbox__checkmark {
-  background-color: green;
+  background-color: #6CB6A2;
 }
 
 .checkbox__checkmark:after {
